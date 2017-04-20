@@ -5,7 +5,7 @@ let CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
 
     entry: {
-        path: path.join(__dirname, '../SourceCode/App.tsx'),
+        path: path.join(__dirname, '../SourceCode/App.jsx'),
         vendor: ['react', 'react-dom', 'framework7']
     },
 
@@ -15,7 +15,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.js', '.ts', '.tsx', '.css', '.png', '.jpg', '.json']
+        extensions: ['.js', '.jsx', '.css', '.png', '.jpg', '.json']
     },
 
     resolveLoader: {
@@ -24,23 +24,14 @@ module.exports = {
 
     module: {
         rules: [{
-                test: /\.(ts|tsx)$/,
+                test: /\.(js|jsx)$/,
                 use: {
-                    loader: 'awesome-typescript-loader'
-                }
-            },
-            {
-                test: /\.js$/,
-                use: [
-                    'source-map-loader',
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['env'],
-                            compact: false
-                        }
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env', 'react'],
+                        compact: false
                     }
-                ],
+                }
             },
             {
                 test: /\.css$/,
